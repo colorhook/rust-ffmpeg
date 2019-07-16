@@ -1,0 +1,23 @@
+[package]
+name = "examples"
+version = "0.1.0"
+authors = ["liaojian <colorhook@gmail.com>"]
+
+[[bin]]
+name = "metadata"
+path = "metadata.rs"
+
+[[bin]]
+name = "chapters"
+path = "chapters.rs"
+
+[[bin]]
+name = "codec"
+path = "codec-info.rs"
+
+[[bin]]
+name = "transcode"
+path = "transcode-audio.rs"
+
+[dependencies]
+ffmpeg = { path = "../ffmpeg" }

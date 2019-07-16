@@ -27,6 +27,12 @@ pub enum Type {
 
     ContentLightLevel,
     IccProfile,
+    QPTableProperties,
+    QPTableData,
+    S12MTimecode,
+    // for future
+    // DynamicHdrPlus,
+    // RegionsOfInterest,
 }
 
 impl Type {
@@ -59,6 +65,15 @@ impl From<AVFrameSideDataType> for Type {
 
             AV_FRAME_DATA_CONTENT_LIGHT_LEVEL => Type::ContentLightLevel,
             AV_FRAME_DATA_ICC_PROFILE => Type::IccProfile,
+            
+            AV_FRAME_DATA_QP_TABLE_PROPERTIES => Type::QPTableProperties,
+            AV_FRAME_DATA_QP_TABLE_DATA => Type::QPTableData,
+            AV_FRAME_DATA_S12M_TIMECODE => Type::S12MTimecode,
+
+            // for future
+            // AV_FRAME_DATA_DYNAMIC_HDR_PLUS => Type::DynamicHdrPlus,
+            // AV_FRAME_DATA_REGIONS_OF_INTEREST => Type::RegionsOfInterest,
+
         }
     }
 }
@@ -84,6 +99,12 @@ impl Into<AVFrameSideDataType> for Type {
 
             Type::ContentLightLevel => AV_FRAME_DATA_CONTENT_LIGHT_LEVEL,
             Type::IccProfile => AV_FRAME_DATA_ICC_PROFILE,
+            Type::QPTableProperties => AV_FRAME_DATA_QP_TABLE_PROPERTIES,
+            Type::QPTableData => AV_FRAME_DATA_QP_TABLE_DATA,
+            Type::S12MTimecode => AV_FRAME_DATA_S12M_TIMECODE,
+            // for future
+            // Type::DynamicHdrPlus => AV_FRAME_DATA_DYNAMIC_HDR_PLUS,
+            // Type::RegionsOfInterest => AV_FRAME_DATA_REGIONS_OF_INTEREST,
         }
     }
 }
