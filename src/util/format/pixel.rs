@@ -313,15 +313,15 @@ pub enum Pixel {
 
     GRAYF32BE,
     GRAYF32LE,
-    /*
-    GRAY32BE,
-    GRAY32LE,
     
     YUVA422P12BE,
     YUVA422P12LE,
     YUVA444P12BE,
     YUVA444P12LE,
-    */
+
+    NV24,
+    NV42,
+    
 }
 
 #[derive(Clone, Copy, PartialEq, Eq)]
@@ -607,15 +607,15 @@ impl From<AVPixelFormat> for Pixel {
             AV_PIX_FMT_GRAYF32BE => Pixel::GRAYF32BE,
             AV_PIX_FMT_GRAYF32LE => Pixel::GRAYF32LE,
 
-            /*
-            AV_PIX_FMT_GRAY32BE => Pixel::GRAY32BE,
-            AV_PIX_FMT_GRAY32LE => Pixel::GRAY32LE,
             
             AV_PIX_FMT_YUVA422P12BE => Pixel::YUVA422P12BE,
             AV_PIX_FMT_YUVA422P12LE => Pixel::YUVA422P12LE,
             AV_PIX_FMT_YUVA444P12BE => Pixel::YUVA444P12BE,
             AV_PIX_FMT_YUVA444P12LE => Pixel::YUVA444P12LE,
-            */
+
+            AV_PIX_FMT_NV24 => Pixel::NV24,
+            AV_PIX_FMT_NV42 => Pixel::NV42,
+            
         }
     }
 }
@@ -931,15 +931,14 @@ impl Into<AVPixelFormat> for Pixel {
             Pixel::GRAYF32BE => AV_PIX_FMT_GRAYF32BE,
             Pixel::GRAYF32LE => AV_PIX_FMT_GRAYF32LE,
 
-            /*
-            Pixel::GRAY32BE => AV_PIX_FMT_GRAY32BE,
-            Pixel::GRAY32LE => AV_PIX_FMT_GRAY32LE,
             
             Pixel::YUVA422P12BE => AV_PIX_FMT_YUVA422P12BE,
             Pixel::YUVA422P12LE => AV_PIX_FMT_YUVA422P12LE,
             Pixel::YUVA444P12BE => AV_PIX_FMT_YUVA444P12BE,
             Pixel::YUVA444P12LE => AV_PIX_FMT_YUVA444P12LE,
-            */
+            
+            Pixel::NV24 => AV_PIX_FMT_NV24,
+            Pixel::NV42 => AV_PIX_FMT_NV42,
         }
     }
 }
@@ -960,14 +959,7 @@ impl fmt::Display for ParsePixelError {
 }
 
 impl error::Error for ParsePixelError {
-    fn description(&self) -> &str {
-        match *self {
-            ParsePixelError::NulError(ref e) => e.description(),
-            ParsePixelError::UnknownFormat => "unknown pixel format",
-        }
-    }
-
-    fn cause(&self) -> Option<&error::Error> {
+    fn cause(&self) -> Option<&dyn error::Error> {
         match *self {
             ParsePixelError::NulError(ref e) => Some(e),
             ParsePixelError::UnknownFormat => None,

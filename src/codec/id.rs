@@ -313,6 +313,7 @@ pub enum Id {
     ADPCM_AICA,
     ADPCM_IMA_DAT4,
     ADPCM_MTAF,
+    ADPCM_AGM,
 
     // AMR
     AMR_NB,
@@ -446,6 +447,7 @@ pub enum Id {
     ASS,
     HDMV_TEXT_SUBTITLE,
     TTML,
+    ARIB_CAPTION,
 
     // other specific kind of codecs (generally used for attachments)
     FIRST_UNKNOWN,
@@ -493,13 +495,20 @@ pub enum Id {
     MWSC,
     WCMV,
     RASC,
+    HYMT,
+    ARBC,
+    AGM,
+    LSCR,
+    VP4,
+
     GREMLIN_DPCM,
     DOLBY_E,
-    /*@add 4 */
+
     APTX,
     APTX_HD,
     SBC,
     ATRAC9,
+    HCOM,
 }
 
 impl Id {
@@ -817,6 +826,7 @@ impl From<AVCodecID> for Id {
             AV_CODEC_ID_ADPCM_AICA => Id::ADPCM_AICA,
             AV_CODEC_ID_ADPCM_IMA_DAT4 => Id::ADPCM_IMA_DAT4,
             AV_CODEC_ID_ADPCM_MTAF => Id::ADPCM_MTAF,
+            AV_CODEC_ID_ADPCM_AGM => Id::ADPCM_AGM,
 
             /* AMR */
             AV_CODEC_ID_AMR_NB => Id::AMR_NB,
@@ -948,7 +958,8 @@ impl From<AVCodecID> for Id {
             AV_CODEC_ID_PJS => Id::PJS,
             AV_CODEC_ID_ASS => Id::ASS,
             AV_CODEC_ID_HDMV_TEXT_SUBTITLE => Id::HDMV_TEXT_SUBTITLE,
-            /*@add*/AV_CODEC_ID_TTML => Id::TTML,
+            AV_CODEC_ID_TTML => Id::TTML,
+            AV_CODEC_ID_ARIB_CAPTION => Id::ARIB_CAPTION,
 
             /* other specific kind of codecs (generally used for attachments) */
             AV_CODEC_ID_FIRST_UNKNOWN => Id::FIRST_UNKNOWN,
@@ -995,13 +1006,21 @@ impl From<AVCodecID> for Id {
             AV_CODEC_ID_MWSC => Id::MWSC,
             AV_CODEC_ID_WCMV => Id::WCMV,
             AV_CODEC_ID_RASC => Id::RASC,
+
+            AV_CODEC_ID_HYMT => Id::HYMT,
+            AV_CODEC_ID_ARBC => Id::ARBC,
+            AV_CODEC_ID_AGM => Id::AGM,
+            AV_CODEC_ID_LSCR => Id::LSCR,
+            AV_CODEC_ID_VP4 => Id::VP4,
+
             AV_CODEC_ID_GREMLIN_DPCM => Id::GREMLIN_DPCM,
             AV_CODEC_ID_DOLBY_E => Id::DOLBY_E,
-            /*@add 4*/
+         
             AV_CODEC_ID_APTX => Id::APTX,
             AV_CODEC_ID_APTX_HD => Id::APTX_HD,
             AV_CODEC_ID_SBC => Id::SBC,
             AV_CODEC_ID_ATRAC9 => Id::ATRAC9,
+            AV_CODEC_ID_HCOM => Id::HCOM,
         }
     }
 }
@@ -1314,6 +1333,7 @@ impl Into<AVCodecID> for Id {
             Id::ADPCM_AICA => AV_CODEC_ID_ADPCM_AICA,
             Id::ADPCM_IMA_DAT4 => AV_CODEC_ID_ADPCM_IMA_DAT4,
             Id::ADPCM_MTAF => AV_CODEC_ID_ADPCM_MTAF,
+            Id::ADPCM_AGM => AV_CODEC_ID_ADPCM_AGM,
 
             /* AMR */
             Id::AMR_NB => AV_CODEC_ID_AMR_NB,
@@ -1446,6 +1466,7 @@ impl Into<AVCodecID> for Id {
             Id::ASS => AV_CODEC_ID_ASS,
             Id::HDMV_TEXT_SUBTITLE => AV_CODEC_ID_HDMV_TEXT_SUBTITLE,
             Id::TTML => AV_CODEC_ID_TTML,
+            Id::ARIB_CAPTION => AV_CODEC_ID_ARIB_CAPTION,
 
             /* other specific kind of codecs (generally used for attachments) */
             Id::FIRST_UNKNOWN => AV_CODEC_ID_FIRST_UNKNOWN,
@@ -1493,13 +1514,21 @@ impl Into<AVCodecID> for Id {
             Id::MWSC => AV_CODEC_ID_MWSC,
             Id::WCMV => AV_CODEC_ID_WCMV,
             Id::RASC => AV_CODEC_ID_RASC,
+
+            Id::HYMT => AV_CODEC_ID_HYMT,
+            Id::ARBC => AV_CODEC_ID_ARBC,
+            Id::AGM => AV_CODEC_ID_AGM,
+            Id::LSCR => AV_CODEC_ID_LSCR,
+            Id::VP4 => AV_CODEC_ID_VP4,
+
             Id::GREMLIN_DPCM => AV_CODEC_ID_GREMLIN_DPCM,
             Id::DOLBY_E => AV_CODEC_ID_DOLBY_E,
-            /*@add 4*/
+           
             Id::APTX => AV_CODEC_ID_APTX,
             Id::APTX_HD => AV_CODEC_ID_APTX_HD,
             Id::SBC => AV_CODEC_ID_SBC,
             Id::ATRAC9 => AV_CODEC_ID_ATRAC9,
+            Id::HCOM => AV_CODEC_ID_HCOM,
         }
     }
 }

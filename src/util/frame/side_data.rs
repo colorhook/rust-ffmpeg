@@ -30,9 +30,9 @@ pub enum Type {
     QPTableProperties,
     QPTableData,
     S12MTimecode,
-    // for future
-    // DynamicHdrPlus,
-    // RegionsOfInterest,
+
+    DynamicHdrPlus,
+    RegionsOfInterest,
 }
 
 impl Type {
@@ -70,9 +70,9 @@ impl From<AVFrameSideDataType> for Type {
             AV_FRAME_DATA_QP_TABLE_DATA => Type::QPTableData,
             AV_FRAME_DATA_S12M_TIMECODE => Type::S12MTimecode,
 
-            // for future
-            // AV_FRAME_DATA_DYNAMIC_HDR_PLUS => Type::DynamicHdrPlus,
-            // AV_FRAME_DATA_REGIONS_OF_INTEREST => Type::RegionsOfInterest,
+
+            AV_FRAME_DATA_DYNAMIC_HDR_PLUS => Type::DynamicHdrPlus,
+            AV_FRAME_DATA_REGIONS_OF_INTEREST => Type::RegionsOfInterest,
 
         }
     }
@@ -102,9 +102,9 @@ impl Into<AVFrameSideDataType> for Type {
             Type::QPTableProperties => AV_FRAME_DATA_QP_TABLE_PROPERTIES,
             Type::QPTableData => AV_FRAME_DATA_QP_TABLE_DATA,
             Type::S12MTimecode => AV_FRAME_DATA_S12M_TIMECODE,
-            // for future
-            // Type::DynamicHdrPlus => AV_FRAME_DATA_DYNAMIC_HDR_PLUS,
-            // Type::RegionsOfInterest => AV_FRAME_DATA_REGIONS_OF_INTEREST,
+
+            Type::DynamicHdrPlus => AV_FRAME_DATA_DYNAMIC_HDR_PLUS,
+            Type::RegionsOfInterest => AV_FRAME_DATA_REGIONS_OF_INTEREST,
         }
     }
 }
