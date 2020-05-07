@@ -91,8 +91,8 @@ libc     = "0.2"
 bitflags = "1.2"
 
 [dependencies.image]
-version  = "0.12"
-optional = true
+version  = "0.23.4"
+# optional = true
 
 [dependencies.ffmpeg-sys]
 git = "https://github.com/colorhook/rust-ffmpeg-sys.git"

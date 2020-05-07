@@ -13,7 +13,7 @@ impl Iterator for AudioIter {
         unsafe {
             let ptr = av_output_audio_device_next(self.0);
 
-            if ptr.is_null() && !self.0.is_null() {
+            if ptr.is_null() {
                 None
             } else {
                 self.0 = ptr;
@@ -37,7 +37,7 @@ impl Iterator for VideoIter {
         unsafe {
             let ptr = av_output_video_device_next(self.0);
 
-            if ptr.is_null() && !self.0.is_null() {
+            if ptr.is_null() {
                 None
             } else {
                 self.0 = ptr;

@@ -415,6 +415,40 @@ impl AsMut<Context> for Video {
 pub struct Encoder(pub Video);
 
 impl Encoder {
+
+    pub fn send_frame(
+        &mut self,
+        frame: &frame::Video,
+    ) -> Result<bool, Error> {
+        unsafe {
+            if self.format() != frame.format() || self.width() != frame.width()
+                || self.height() != frame.height()
+            {
+                return Err(Error::InvalidData);
+            }
+
+            let ret = avcodec_send_frame(self.0.as_mut_ptr(), frame.as_ptr());
+
+            if ret < 0 {
+                return Err(Error::from(ret));
+            }
+            Ok(true)
+        }
+    }
+
+    #[inline]
+    pub fn receive_packet<P: packet::Mut>(&mut self, out: &mut P) -> bool {
+        unsafe {
+            let ret = avcodec_receive_packet(self.0.as_mut_ptr(), out.as_mut_ptr());
+            if ret == AVERROR(EAGAIN) || ret == AVERROR_EOF {
+                return false;
+            } else if ret < 0 {
+                return false;
+            }
+            true
+        }
+    }
+
     #[inline]
     pub fn encode<P: packet::Mut>(
         &mut self,
@@ -443,19 +477,9 @@ impl Encoder {
     }
 
     #[inline]
-    pub fn flush<P: packet::Mut>(&mut self, out: &mut P) -> Result<bool, Error> {
+    pub fn flush(&mut self) {
         unsafe {
-            let mut got: c_int = 0;
-
-            match avcodec_encode_video2(
-                self.0.as_mut_ptr(),
-                out.as_mut_ptr(),
-                ptr::null(),
-                &mut got,
-            ) {
-                e if e < 0 => Err(Error::from(e)),
-                _ => Ok(got != 0),
-            }
+            avcodec_send_frame(self.0.as_mut_ptr(), ptr::null());
         }
     }
 

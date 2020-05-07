@@ -6,3 +6,7 @@ Cargo.lock
 *.swp
 *.swo
 *.swn
+.idea
+test.mp4
+
+.DS_Store

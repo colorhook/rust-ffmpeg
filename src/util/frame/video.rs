@@ -1,6 +1,7 @@
 use std::mem;
 use std::ops::{Deref, DerefMut};
 use std::slice;
+use std::ptr;
 
 use super::Frame;
 use color;
@@ -34,6 +35,11 @@ impl Video {
     #[inline(always)]
     pub fn empty() -> Self {
         unsafe { Video(Frame::empty()) }
+    }
+
+    #[inline(always)]
+    pub fn null() -> Self {
+        unsafe { Video(Frame::wrap(ptr::null_mut())) }
     }
 
     #[inline]
