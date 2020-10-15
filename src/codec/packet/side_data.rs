@@ -6,6 +6,7 @@ use ffi::AVPacketSideDataType::*;
 use ffi::*;
 
 #[derive(Eq, PartialEq, Copy, Clone, Debug)]
+#[non_exhaustive]
 pub enum Type {
     Palette,
     NewExtraData,
@@ -36,6 +37,7 @@ pub enum Type {
     EncryptionInitInfo,
     EncryptionInfo,
     AFD,
+
 }
 
 impl From<AVPacketSideDataType> for Type {
@@ -70,7 +72,8 @@ impl From<AVPacketSideDataType> for Type {
             AV_PKT_DATA_ENCRYPTION_INIT_INFO => Type::EncryptionInitInfo,
             AV_PKT_DATA_ENCRYPTION_INFO => Type::EncryptionInfo,
             AV_PKT_DATA_AFD => Type::AFD,
-   
+       
+            _ => Type::Palette,
         }
     }
 }
@@ -108,6 +111,7 @@ impl Into<AVPacketSideDataType> for Type {
             Type::EncryptionInitInfo => AV_PKT_DATA_ENCRYPTION_INIT_INFO,
             Type::EncryptionInfo => AV_PKT_DATA_ENCRYPTION_INFO,
             Type::AFD => AV_PKT_DATA_AFD,
+  
         }
     }
 }

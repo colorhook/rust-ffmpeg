@@ -7,6 +7,7 @@ use util::media;
 
 #[allow(non_camel_case_types)]
 #[derive(Eq, PartialEq, Clone, Copy, Debug)]
+#[non_exhaustive]
 pub enum Id {
     None,
 
@@ -500,6 +501,14 @@ pub enum Id {
     AGM,
     LSCR,
     VP4,
+    IMM5,
+    MVDV,
+    MVHA,
+    CDTOONS,
+    MV30,
+    NOTCHLC,
+    PFM,
+
 
     GREMLIN_DPCM,
     DOLBY_E,
@@ -509,6 +518,8 @@ pub enum Id {
     SBC,
     ATRAC9,
     HCOM,
+
+    _UNKNOWN,
 }
 
 impl Id {
@@ -1013,6 +1024,14 @@ impl From<AVCodecID> for Id {
             AV_CODEC_ID_LSCR => Id::LSCR,
             AV_CODEC_ID_VP4 => Id::VP4,
 
+            AV_CODEC_ID_IMM5 => Id::IMM5,
+            AV_CODEC_ID_MVDV => Id::MVDV,
+            AV_CODEC_ID_MVHA => Id::MVHA,
+            AV_CODEC_ID_CDTOONS => Id::CDTOONS,
+            AV_CODEC_ID_MV30 => Id::MV30,
+            AV_CODEC_ID_NOTCHLC => Id::NOTCHLC,
+            AV_CODEC_ID_PFM => Id::PFM,
+
             AV_CODEC_ID_GREMLIN_DPCM => Id::GREMLIN_DPCM,
             AV_CODEC_ID_DOLBY_E => Id::DOLBY_E,
          
@@ -1021,6 +1040,8 @@ impl From<AVCodecID> for Id {
             AV_CODEC_ID_SBC => Id::SBC,
             AV_CODEC_ID_ATRAC9 => Id::ATRAC9,
             AV_CODEC_ID_HCOM => Id::HCOM,
+
+            _ => Id::_UNKNOWN,
         }
     }
 }
@@ -1521,6 +1542,14 @@ impl Into<AVCodecID> for Id {
             Id::LSCR => AV_CODEC_ID_LSCR,
             Id::VP4 => AV_CODEC_ID_VP4,
 
+            Id::IMM5 => AV_CODEC_ID_IMM5,
+            Id::MVDV => AV_CODEC_ID_MVDV,
+            Id::MVHA => AV_CODEC_ID_MVHA,
+            Id::CDTOONS => AV_CODEC_ID_CDTOONS,
+            Id::MV30 => AV_CODEC_ID_MV30,
+            Id::NOTCHLC => AV_CODEC_ID_NOTCHLC,
+            Id::PFM => AV_CODEC_ID_PFM,
+
             Id::GREMLIN_DPCM => AV_CODEC_ID_GREMLIN_DPCM,
             Id::DOLBY_E => AV_CODEC_ID_DOLBY_E,
            
@@ -1529,6 +1558,8 @@ impl Into<AVCodecID> for Id {
             Id::SBC => AV_CODEC_ID_SBC,
             Id::ATRAC9 => AV_CODEC_ID_ATRAC9,
             Id::HCOM => AV_CODEC_ID_HCOM,
+
+            Id::_UNKNOWN => AV_CODEC_ID_H264,
         }
     }
 }

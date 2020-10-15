@@ -7,6 +7,7 @@ use ffi::AVPixelFormat::*;
 use ffi::*;
 
 #[derive(Eq, PartialEq, Copy, Clone, Debug)]
+#[non_exhaustive]
 pub enum Pixel {
     None,
 
@@ -616,6 +617,7 @@ impl From<AVPixelFormat> for Pixel {
             AV_PIX_FMT_NV24 => Pixel::NV24,
             AV_PIX_FMT_NV42 => Pixel::NV42,
             
+            _ => Pixel::None,
         }
     }
 }

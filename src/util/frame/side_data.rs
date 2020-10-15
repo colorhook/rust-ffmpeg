@@ -9,6 +9,7 @@ use ffi::*;
 use DictionaryRef;
 
 #[derive(Eq, PartialEq, Copy, Clone, Debug)]
+#[non_exhaustive]
 pub enum Type {
     PanScan,
     A53CC,
@@ -33,6 +34,7 @@ pub enum Type {
 
     DynamicHdrPlus,
     RegionsOfInterest,
+    VideoEncParams,
 }
 
 impl Type {
@@ -73,6 +75,7 @@ impl From<AVFrameSideDataType> for Type {
 
             AV_FRAME_DATA_DYNAMIC_HDR_PLUS => Type::DynamicHdrPlus,
             AV_FRAME_DATA_REGIONS_OF_INTEREST => Type::RegionsOfInterest,
+            AV_FRAME_DATA_VIDEO_ENC_PARAMS => Type::VideoEncParams,
 
         }
     }
@@ -105,6 +108,7 @@ impl Into<AVFrameSideDataType> for Type {
 
             Type::DynamicHdrPlus => AV_FRAME_DATA_DYNAMIC_HDR_PLUS,
             Type::RegionsOfInterest => AV_FRAME_DATA_REGIONS_OF_INTEREST,
+            Type::VideoEncParams => AV_FRAME_DATA_VIDEO_ENC_PARAMS,
         }
     }
 }
